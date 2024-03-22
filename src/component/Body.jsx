@@ -1,12 +1,18 @@
 import Restaurant from "./Restaurant";
 import { restaurants } from "../utils/mockData";
+import SearchRestaurant from "./SearchRestaurant";
 
 const Body = () => {
   return (
-    <div className=" container flex justify-center   flex-wrap gap-12  bg-[#FFFEFE] h-screen mx-auto p-9">
-      {restaurants.map((restaurant) => (
-        <Restaurant key={restaurant?.info?.id} resData={restaurant} />
-      ))}
+    <div className="container bg-[#FFFEFE] mx-auto  w-[80%] my-10">
+      <div className="w-full my-8">
+        <SearchRestaurant />
+      </div>
+      <div className="flex flex-wrap gap-9">
+        {restaurants.map((restaurant) => (
+          <Restaurant key={restaurant?.info?.id} resData={restaurant} />
+        ))}
+      </div>
     </div>
   );
 };

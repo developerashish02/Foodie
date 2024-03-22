@@ -2,8 +2,8 @@ import { RES_LOGO } from "../utils/constants";
 
 const Header = () => {
   return (
-    <header className="bg-white text-black px-4 py-6 h-24 border-2 ">
-      <div className="container mx-auto flex justify-between items-center ">
+    <header className="bg-white text-black px-4 py-6 h-24 shadow-md">
+      <div className="container mx-auto flex justify-between items-center">
         <img src={RES_LOGO} alt="nav-logo" className="w-16" />
 
         <nav className="mr-4">
