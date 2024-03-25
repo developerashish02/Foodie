@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { API_RESTAURANTS } from "../utils/constants";
 import Restaurant from "./Restaurant";
 import SearchRestaurant from "./SearchRestaurant";
+import Shimmer from "./Shimmer";
 
 const Body = () => {
   const [restaurants, setRestaurants] = useState([]);
@@ -11,13 +12,12 @@ const Body = () => {
     const response = await fetch(API_RESTAURANTS);
     const data = await response.json();
 
-    setRestaurants(
-      data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
+    const resData =
+      data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants;
 
-    SetFilterRestaurant(
-      data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
+    setRestaurants(resData);
+    SetFilterRestaurant(resData);
   };
 
   useEffect(() => {
@@ -33,11 +33,15 @@ const Body = () => {
         />
       </div>
 
-      <div className="flex flex-wrap gap-9">
-        {restaurants?.map((restaurant) => (
-          <Restaurant key={restaurant?.info?.id} resData={restaurant} />
-        ))}
-      </div>
+      {restaurants.length === 0 ? (
+        <Shimmer />
+      ) : (
+        <div className="flex flex-wrap gap-9">
+          {restaurants?.map((restaurant) => (
+            <Restaurant key={restaurant?.info?.id} resData={restaurant} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
