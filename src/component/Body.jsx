@@ -25,7 +25,7 @@ const Body = () => {
   }, []);
 
   return (
-    <div className="container bg-[#FFFEFE] mx-auto  w-[80%] my-10">
+    <div className="container bg-[#fffefe] mx-auto  w-[80%] my-10">
       <div className="w-full my-8">
         <SearchRestaurant
           handleFilter={setRestaurants}
