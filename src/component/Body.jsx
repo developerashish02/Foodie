@@ -1,11 +1,29 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { API_RESTAURANTS } from "../utils/constants";
 import Restaurant from "./Restaurant";
-import { restaurantsData } from "../utils/mockData";
 import SearchRestaurant from "./SearchRestaurant";
 
 const Body = () => {
-  const [restaurants, setRestaurants] = useState(restaurantsData);
-  const filterRestaurant = restaurantsData;
+  const [restaurants, setRestaurants] = useState([]);
+  const [filterRestaurant, SetFilterRestaurant] = useState([]);
+
+  const getRestaurantData = async () => {
+    const response = await fetch(API_RESTAURANTS);
+    const data = await response.json();
+
+    setRestaurants(
+      data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+
+    SetFilterRestaurant(
+      data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+  };
+
+  useEffect(() => {
+    getRestaurantData();
+  }, []);
+
   return (
     <div className="container bg-[#FFFEFE] mx-auto  w-[80%] my-10">
       <div className="w-full my-8">
