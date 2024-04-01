@@ -1,27 +1,26 @@
 import simile from "../assets/img/smiling.svg";
 import { useFormik } from "formik";
+import * as Yup from "yup";
 
-const validate = (values) => {
-  const errors = {};
-  if (!values.email) {
-    errors.email = "Required";
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = "Invalid email address";
-  }
-
-  if (!values.password) {
-    errors.password = "Required";
-  }
-
-  return errors;
-};
 const SignIn = () => {
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
-    validate,
+    validationSchema: Yup.object({
+      email: Yup.string()
+        .required("Required")
+        .email("Invalid email address")
+        .required("Required"),
+      password: Yup.string()
+        .required("Required")
+        .min(8, "Password must be at least 8 characters")
+        .matches(
+          /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/,
+          "Password must contain at least one number, one uppercase and one lowercase letter"
+        ),
+    }),
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
     },
@@ -54,11 +53,8 @@ const SignIn = () => {
               </label>
               <input
                 type="email"
-                name="email"
                 id="email"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.email}
+                {...formik.getFieldProps("email")}
                 className="border-2 border-gray-500 py-3  w-full rounded-xl pl-14"
                 placeholder="work.ashish.gaikwad@gmail.com"
               />
@@ -77,12 +73,9 @@ const SignIn = () => {
               </label>
               <input
                 type="password"
-                name="password"
                 id="password"
-                value={formik.values.password}
+                {...formik.getFieldProps("password")}
                 className="border-2 border-gray-500 py-3  w-full rounded-xl pl-14"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
                 placeholder="password"
               />
               <i className="fa-solid fa-lock absolute top-9 left-3 px-4 text-lg font-bold"></i>
