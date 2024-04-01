@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
+import { useParams } from "react-router-dom";
 
 const RestaurantMenu = () => {
+  const { resId } = useParams();
+  console.log(resId);
   const [restaurantMenu, setRestaurantMenu] = useState(null);
 
   useEffect(() => {
@@ -11,7 +14,7 @@ const RestaurantMenu = () => {
   const getRestaurantMenu = async () => {
     try {
       const response = await fetch(
-        "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=18.5204303&lng=73.8567437&restaurantId=17024&catalog_qa=undefined&isMenuUx4=true&submitAction=ENTER"
+        `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=18.5204303&lng=73.8567437&restaurantId=${resId}`
       );
       const data = await response.json();
       console.log(data?.data?.cards[2]?.card?.card?.info);
@@ -55,8 +58,13 @@ const RestaurantMenu = () => {
             </p>
           </div>
           <hr />
-          <div className="mt-2">
-            <span>{lastMileTravelString} </span> |{" "}
+          <div className="mt-2 flex space-x-2">
+            <img
+              className="w-5"
+              src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_40,h_40/v1648635511/Delivery_fee_new_cjxumu"
+              alt=""
+            />
+            <span>{lastMileTravelString} </span> |
             <span>₹ {totalFee / 100} Delivery fee will apply</span>
           </div>
         </div>

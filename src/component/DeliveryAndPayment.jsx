@@ -1,13 +1,9 @@
-import "../App.css";
 const DeliveryAndPayment = () => {
   return (
-    <div
-      className="healthy-food-section pt-5 pb-5"
-      id="main-healthy-food-section"
-    >
+    <div className="healthy-food-section py-5" id="main-healthy-food-section">
       <div className="container">
-        <div className="row">
-          <div className="col-12 col-md-5">
+        <div className="grid-rows-12">
+          <div className="col-md-5">
             <div className="text-center">
               <img
                 src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-responsive-website/healthy-food-plate-img.png"

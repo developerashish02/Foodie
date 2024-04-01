@@ -6,8 +6,10 @@ import "./index.css";
 import Body from "./component/Body.jsx";
 import ContactUs from "./component/ContactUs.jsx";
 import DeliveryAndPayment from "./component/DeliveryAndPayment.jsx";
-import RestaurantMenu from "./component/RestaurantMenu.jsx";
 
+import RestaurantMenu from "./component/RestaurantMenu.jsx";
+import "./App.css";
+import SignIn from "./component/SignIn.jsx";
 const appRouter = createBrowserRouter([
   {
     path: "/",
@@ -18,8 +20,8 @@ const appRouter = createBrowserRouter([
         element: <Body />,
       },
       {
-        path: "/contact",
-        element: <ContactUs />,
+        path: "/sign-in",
+        element: <SignIn />,
       },
       {
         path: "/delivery-payments",

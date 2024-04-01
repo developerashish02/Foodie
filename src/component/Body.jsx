@@ -3,6 +3,7 @@ import { API_RESTAURANTS } from "../utils/constants";
 import Restaurant from "./Restaurant";
 import SearchRestaurant from "./SearchRestaurant";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   const [restaurants, setRestaurants] = useState([]);
@@ -38,7 +39,12 @@ const Body = () => {
       ) : (
         <div className="flex flex-wrap gap-9">
           {restaurants?.map((restaurant) => (
-            <Restaurant key={restaurant?.info?.id} resData={restaurant} />
+            <Link
+              to={"/restaurant-menu/" + restaurant?.info?.id}
+              key={restaurant?.info?.id}
+            >
+              <Restaurant resData={restaurant} />
+            </Link>
           ))}
         </div>
       )}

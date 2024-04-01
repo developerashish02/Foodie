@@ -12,33 +12,38 @@ const Header = () => {
     }
   };
   return (
-    <header className="bg-white text-black px-4 py-6 h-24 shadow-md">
+    <header className="bg-white text-black px-4 py-6 h-24 shadow-md bg-fixed">
       <div className="container mx-auto flex justify-between items-center">
-        <img src={RES_LOGO} alt="nav-logo" className="w-16" />
+        <Link to="/">
+          <img src={RES_LOGO} alt="nav-logo" className="w-16" />
+        </Link>
 
         <nav className="mr-4">
           <ul className="flex space-x-14 text-lg ">
             <Link to="/">
-              <li className="space-x-2 hover:text-gray-300">
+              <li className="space-x-2 hover:text-gray-300 font-[poppies]">
                 <i className="fa-solid fa-house"></i>
                 <a href="#">Home</a>
               </li>
             </Link>
 
-            <li className="space-x-2 hover:text-gray-300" onClick={handleLogin}>
+            <li
+              className="space-x-2 hover:text-gray-300 font-[poppies]"
+              onClick={handleLogin}
+            >
               <i className="fa-solid fa-bars"></i>
               <a href="#"> {signIn} </a>
             </li>
-            <li>
+            <li className="font-[poppies]">
               <a href="#" className="hover:text-gray-300">
                 <i className="fa-solid fa-cart-shopping"></i>
               </a>
             </li>
 
-            <Link to="/contact">
-              <li className="space-x-2 hover:text-gray-300">
+            <Link to="/sign-in">
+              <li className="space-x-2 hover:text-gray-300 font-[poppies]">
                 <i className="fa-solid fa-address-book"></i>
-                <a href="#">Contact</a>
+                <a href="#">Sign In</a>
               </li>
             </Link>
           </ul>
