@@ -1,18 +1,16 @@
 import { useState } from "react";
 import { RES_LOGO } from "../utils/constants";
 import { Link } from "react-router-dom";
+import useIsOnline from "../hooks/useIsOnline";
 
 const Header = () => {
-  const [signIn, setSignIn] = useState("Login");
-  const handleLogin = () => {
-    if (signIn === "Login") {
-      setSignIn("Logout");
-    } else {
-      setSignIn("Login");
-    }
-  };
+  const isOnline = useIsOnline();
   return (
-    <header className="bg-white text-black px-4 py-6 h-24 shadow-md bg-fixed">
+    <header
+      className={`bg-white text-black px-4 py-6 h-24 shadow-md bg-fixed ${
+        !isOnline ? "pointer-events-none" : ""
+      }`}
+    >
       <div className="container mx-auto flex justify-between items-center">
         <Link to="/">
           <img src={RES_LOGO} alt="nav-logo" className="w-16" />
@@ -27,12 +25,9 @@ const Header = () => {
               </li>
             </Link>
 
-            <li
-              className="space-x-2 hover:text-gray-300 font-[poppies]"
-              onClick={handleLogin}
-            >
+            <li className="space-x-2 hover:text-gray-300 font-[poppies]">
               <i className="fa-solid fa-bars"></i>
-              <a href="#"> {signIn} </a>
+              <a href="#"> signIn </a>
             </li>
             <li className="font-[poppies]">
               <a href="#" className="hover:text-gray-300">
