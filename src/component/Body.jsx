@@ -5,11 +5,15 @@ import { Link } from "react-router-dom";
 import useRestaurantAndFilter from "../hooks/useRestaurantAndFilter";
 import InternetConnection from "./InternetConeection";
 import useIsOnline from "../hooks/useIsOnline";
+import withRestaurantOffer from "./hoc/withRestuarntOffer";
 
 const Body = () => {
   const { restaurants, filterRestaurant, setRestaurants } =
     useRestaurantAndFilter();
   const isOnline = useIsOnline();
+  const RestaurantWithOffer = withRestaurantOffer(Restaurant);
+
+  console.log(restaurants);
 
   return (
     <div
@@ -28,19 +32,21 @@ const Body = () => {
       {restaurants.length === 0 ? (
         <Shimmer />
       ) : (
-        <div
-          className={`flex flex-wrap gap-9  ${
-            !isOnline ? "pointer-events-none" : ""
-          }`}
-        >
-          {restaurants?.map((restaurant) => (
-            <Link
-              to={"/restaurant-menu/" + restaurant?.info?.id}
-              key={restaurant?.info?.id}
-            >
-              <Restaurant resData={restaurant} />
-            </Link>
-          ))}
+        <div className="container">
+          <div className="grid grid-cols-4 gap-6">
+            {restaurants?.map((restaurant) => (
+              <Link
+                to={"/restaurant-menu/" + restaurant?.info?.id}
+                key={restaurant?.info?.id}
+              >
+                {restaurant?.info?.aggregatedDiscountInfoV3 ? (
+                  <RestaurantWithOffer resData={restaurant} />
+                ) : (
+                  <Restaurant resData={restaurant} />
+                )}
+              </Link>
+            ))}
+          </div>
         </div>
       )}
     </div>

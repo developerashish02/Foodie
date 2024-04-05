@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { RES_LOGO } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useIsOnline from "../hooks/useIsOnline";
