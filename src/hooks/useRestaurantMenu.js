@@ -12,7 +12,7 @@ const useRestaurantMenu = (resId) => {
     try {
       const response = await fetch(RESTAURANT_MENU + resId);
       const data = await response.json();
-      setRestaurantMenu(data?.data?.cards[2]?.card?.card?.info);
+      setRestaurantMenu(data?.data);
     } catch (error) {
       console.error(error);
     }
