@@ -1,19 +1,34 @@
+import { useState } from "react";
 import RestaurantItemsCard from "./RestaurantItemsCard";
+import downIcon from "../assets/icons/arrow-down.png";
+import upIcon from "../assets/icons/arrow-up.png";
 
 const RestaurantItems = ({ data }) => {
   const { title, itemCards } = data?.card?.card;
-  console.log(data?.card?.card);
+  const [showItems, setShowItems] = useState(true);
+
   return (
-    <div className="p-4 m-4 shadow-lg cursor-pointer">
+    <div
+      className="p-4 m-4 shadow-lg cursor-pointer"
+      onClick={() => setShowItems(!showItems)}
+    >
       <div className="flex justify-between ">
         <span className="font-bold text-lg">
           {title} ({itemCards?.length})
         </span>
-        <span>⬇️</span>
+        <img
+          src={showItems ? downIcon : upIcon}
+          alt="down-arrow"
+          className="w-4 object-cover"
+        />
       </div>
-      {itemCards.map((item) => (
-        <RestaurantItemsCard data={item} />
-      ))}
+      {showItems && (
+        <div>
+          {itemCards.map((item) => (
+            <RestaurantItemsCard data={item} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
