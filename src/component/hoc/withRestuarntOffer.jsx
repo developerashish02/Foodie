@@ -16,5 +16,5 @@ const withRestaurantOffer = (Restaurant) => {
 
 export default withRestaurantOffer;
 
-// higher order component is the component that takes the component input and inhance
+// higher order component is the component that takes the component input and instance
 // that component and return that called the higher order component
