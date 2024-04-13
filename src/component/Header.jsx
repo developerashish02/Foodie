@@ -28,11 +28,13 @@ const Header = () => {
               <i className="fa-solid fa-bars"></i>
               <a href="#"> About Us </a>
             </li>
-            <li className="font-[poppies]">
-              <span className="hover:text-gray-300">
-                <i className="fa-solid fa-cart-shopping"></i>
-              </span>
-            </li>
+            <Link to="/cart">
+              <li className="font-[poppies]">
+                <span className="hover:text-gray-300">
+                  <i className="fa-solid fa-cart-shopping"></i>
+                </span>
+              </li>
+            </Link>
 
             <Link to="/sign-in">
               <li className="space-x-2 hover:text-gray-300 font-[poppies]">

@@ -8,27 +8,28 @@ const RestaurantItems = ({ data }) => {
   const [showItems, setShowItems] = useState(true);
 
   return (
-    <div
-      className="p-4 m-4 shadow-lg cursor-pointer"
-      onClick={() => setShowItems(!showItems)}
-    >
-      <div className="flex justify-between ">
-        <span className="font-bold text-lg">
-          {title} ({itemCards?.length})
-        </span>
-        <img
-          src={showItems ? downIcon : upIcon}
-          alt="down-arrow"
-          className="w-4 object-cover"
-        />
-      </div>
-      {showItems && (
-        <div>
-          {itemCards.map((item) => (
-            <RestaurantItemsCard data={item} />
-          ))}
+    <div className="p-4 m-4 shadow-lg cursor-pointer">
+      <div onClick={() => setShowItems(!showItems)}>
+        <div className="flex justify-between ">
+          <span className="font-bold text-lg">
+            {title} ({itemCards?.length})
+          </span>
+          <img
+            src={showItems ? downIcon : upIcon}
+            alt="down-arrow"
+            className="w-4 object-cover"
+          />
         </div>
-      )}
+      </div>
+      <div>
+        {showItems && (
+          <div>
+            {itemCards.map((item) => (
+              <RestaurantItemsCard data={item} />
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

@@ -8,6 +8,9 @@ import DeliveryAndPayment from "./component/DeliveryAndPayment.jsx";
 
 import RestaurantMenu from "./component/RestaurantMenu.jsx";
 import "./App.css";
+import Cart from "./component/Cart.jsx";
+import { Provider } from "react-redux";
+import appStore from "./store/appStore.js";
 
 // on Demand Loading
 const SignIn = lazy(() => import("./component/SignIn.jsx"));
@@ -36,12 +39,18 @@ const appRouter = createBrowserRouter([
         path: "/restaurant-menu/:resId",
         element: <RestaurantMenu />,
       },
+      {
+        path: "/cart",
+        element: <Cart />,
+      },
     ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <RouterProvider router={appRouter} />
-  </React.StrictMode>
+  <Provider store={appStore}>
+    <React.StrictMode>
+      <RouterProvider router={appRouter} />
+    </React.StrictMode>
+  </Provider>
 );
