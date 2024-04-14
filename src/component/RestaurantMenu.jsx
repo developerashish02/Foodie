@@ -3,13 +3,14 @@ import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../hooks/useRestaurantMenu";
 import { DELIVERY_ICON } from "../utils/constants";
 import RestaurantItems from "./RestaurantItems";
+import ShimmerRestaurant from "./ShimmerResturant";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
   const restaurantMenu = useRestaurantMenu(resId);
 
   if (restaurantMenu === null) {
-    return <Shimmer />;
+    return <ShimmerRestaurant />;
   }
 
   const {
@@ -30,8 +31,6 @@ const RestaurantMenu = () => {
       restaurant?.card?.card["@type"] ===
       "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
   );
-
-  console.log(finalRestaurantMenus, "finalRestaurantMenus");
 
   return (
     <div className="p-2 w-2/3  mx-auto my-4">

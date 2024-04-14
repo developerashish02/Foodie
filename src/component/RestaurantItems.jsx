@@ -25,7 +25,7 @@ const RestaurantItems = ({ data }) => {
         {showItems && (
           <div>
             {itemCards.map((item) => (
-              <RestaurantItemsCard data={item} />
+              <RestaurantItemsCard data={item} key={item?.card?.info?.id} />
             ))}
           </div>
         )}

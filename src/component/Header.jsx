@@ -1,9 +1,12 @@
 import { RES_LOGO } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useIsOnline from "../hooks/useIsOnline";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const isOnline = useIsOnline();
+  const cartItems = useSelector((store) => store.cart.items);
+
   return (
     <header
       className={`bg-white text-black px-4 py-6 h-24 shadow-md bg-fixed ${
@@ -33,6 +36,7 @@ const Header = () => {
                 <span className="hover:text-gray-300">
                   <i className="fa-solid fa-cart-shopping"></i>
                 </span>
+                <span>({cartItems?.length})</span>
               </li>
             </Link>
 
